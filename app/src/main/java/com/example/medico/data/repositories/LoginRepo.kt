@@ -1,6 +1,7 @@
 package com.example.medico.data.repositories
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
@@ -43,21 +44,27 @@ class LoginRepo {
                             response.errorBody()!!.charStream(),
                             LoginUser::class.java
                         )
-                        Toast.makeText(context, "Erreur dans le login", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, message.msg, Toast.LENGTH_LONG).show()
 
                     } else {
                         val resp = response.body()
-
                         if (resp != null) {
+                            if(resp.success){
                             with(sharedPref?.edit()) {
-                                this?.putString("userID", resp?.id.toString())
+                                this?.putString("userID", resp.id.toString())
+                                this?.putBoolean("connected",true)
                                 this?.apply()
+                            }
+                                Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
+                                val myIntent = Intent(context, HomeActivity::class.java)
+                                context.startActivity(myIntent)
+                                (context as Activity).finish()
+                            }
+                            else{
+                                Toast.makeText(context, resp.msg, Toast.LENGTH_SHORT).show()
                             }
                         }
 
-                        Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-                        val myIntent = Intent(context, HomeActivity::class.java)
-                        context.startActivity(myIntent)
                     }
                 }
 
