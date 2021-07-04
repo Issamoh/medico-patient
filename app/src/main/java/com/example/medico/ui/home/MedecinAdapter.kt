@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,7 @@ class MedecinAdapter(val context: Context, var data:List<Medecin>): RecyclerView
 
     override fun onBindViewHolder(holder: MedecinViewHolder, position: Int){
         val elt = data[position]
+        Toast.makeText(context, elt.nomMedecin, Toast.LENGTH_LONG)
         Glide.with(context).load(elt.photoMedecin).into(holder.image)
         holder.nom.text = holder.nom.text.toString() + " " + elt.nomMedecin + " " + elt.prenomMedecin
         holder.numero.text = elt.telephoneMedecin

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00cba9</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="light_blue_600">#FF039BE5</color>
-    <color name="light_blue_900">#FF01579B</color>
-    <color name="light_blue_A200">#FF40C4FF</color>
-    <color name="light_blue_A400">#FF00B0FF</color>
-    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimary">#C1BEE7</color>
+    <color name="colorPrimaryDark">#847DD0</color>
+    <color name="colorAccent">#E5E5E5</color>
+    <color name="fontPrimaryColor">#1D2424</color>
+    <color name="light_blue_600">#039BE5</color>
+    <color name="light_blue_A200">#40C4FF</color>
+    <color name="light_blue_900">#01579B</color>
+    <color name="light_blue_A400">#00B0FF</color>
+    <color name="black_overlay">#292929</color>
 </resources>

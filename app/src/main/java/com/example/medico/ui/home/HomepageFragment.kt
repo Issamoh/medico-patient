@@ -34,19 +34,19 @@ class HomepageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
-        val specVM = ViewModelProvider(requireActivity()).get(SpecialiteViewModel::class.java)
+        //val specVM = ViewModelProvider(requireActivity()).get(SpecialiteViewModel::class.java)
 
         medVM.getAllMedecins()
-        specVM.getAllSpecialites()
+        /*specVM.getAllSpecialites()
 
         recyclerViewSpec.layoutManager = LinearLayoutManager(requireActivity())
-        recyclerViewSpec.adapter = SpecialiteAdapter(requireActivity(), specVM.listSpec)
+        recyclerViewSpec.adapter = SpecialiteAdapter(requireActivity(), specVM.listSpec)*/
 
         recyclerViewMed.layoutManager = LinearLayoutManager(requireActivity())
         recyclerViewMed.adapter = MedecinAdapter(requireActivity(), medVM.listMed)
 
-        listDocDisplay.setOnClickListener{
+        /*listDocDisplay.setOnClickListener{
 
-        }
+        }*/
     }
 }
