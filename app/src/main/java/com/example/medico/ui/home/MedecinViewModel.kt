@@ -8,7 +8,7 @@ import com.example.medico.data.model.Medecin
 import com.example.medico.data.repositories.MedecinRepo
 
 class MedecinViewModel:ViewModel() {
-    var listMed = listOf<Medecin>()
+    var listMed = MutableLiveData<List<Medecin>>()
 
     fun getAllMedecins(){
         listMed = MedecinRepo.getAllMedecins()

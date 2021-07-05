@@ -1,21 +1,18 @@
 package com.example.medico.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.medico.R
 import com.example.medico.data.model.Medecin
-import com.example.medico.data.repositories.MedecinRepo
-import com.example.medico.data.repositories.SpecialiteRepo
 import kotlinx.android.synthetic.main.fragment_homepage.*
-import kotlinx.android.synthetic.main.fragment_homepage.view.*
 
 class HomepageFragment : Fragment() {
     private lateinit var medVM: MedecinViewModel
@@ -26,27 +23,35 @@ class HomepageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_homepage, container, false)
-
+        return inflater.inflate(R.layout.fragment_homepage, container, false)!!
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
-        //val specVM = ViewModelProvider(requireActivity()).get(SpecialiteViewModel::class.java)
-
+        medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
         medVM.getAllMedecins()
-        /*specVM.getAllSpecialites()
 
-        recyclerViewSpec.layoutManager = LinearLayoutManager(requireActivity())
-        recyclerViewSpec.adapter = SpecialiteAdapter(requireActivity(), specVM.listSpec)*/
+        val rv:RecyclerView = view?.findViewById(R.id.recyclerViewMed) as RecyclerView
 
-        recyclerViewMed.layoutManager = LinearLayoutManager(requireActivity())
-        recyclerViewMed.adapter = MedecinAdapter(requireActivity(), medVM.listMed)
+        medVM.listMed.observe(requireActivity(), Observer { med ->
+            rv.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            rv.adapter = MedecinAdapter(requireActivity(), med)
 
-        /*listDocDisplay.setOnClickListener{
+        })
 
-        }*/
+        specVM = ViewModelProvider(requireActivity()).get(SpecialiteViewModel::class.java)
+        specVM.getAllSpecialites()
+
+        val rvS:RecyclerView = view?.findViewById(R.id.recyclerViewSpec) as RecyclerView
+
+        specVM.listSpec.observe(requireActivity(), Observer { spec ->
+            rvS.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+            rvS.adapter = SpecialiteAdapter(requireActivity(), spec)
+        })
+
+        listDocDisplay.setOnClickListener{
+            findNavController().navigate(R.id.action_homepageFragment_to_listmed_fragment)
+        }
     }
 }

@@ -17,10 +17,10 @@ class MedecinRepo {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-        fun getAllMedecins(): List<Medecin>{
+        fun getAllMedecins(): MutableLiveData<List<Medecin>>{
             val call = api.getAllMedecins()
             var data : List<Medecin>?
-            var finalMed = listOf<Medecin>()
+            var finalMed = MutableLiveData<List<Medecin>>()
 
             call.enqueue(object : Callback<List<Medecin>> {
                 override fun onFailure(call: Call<List<Medecin>>, t: Throwable) {
@@ -34,7 +34,7 @@ class MedecinRepo {
                     if(response.isSuccessful){
                         data = response.body()
                         if(data != null){
-                            finalMed = data!!
+                            finalMed.value = data!!
                         }
                     }else{
                         println("Une erreur s'est déroulée lors de la récupération des données")

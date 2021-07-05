@@ -16,10 +16,10 @@ class SpecialiteRepo {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-        fun getAllSpecialites(): List<Specialite> {
+        fun getAllSpecialites(): MutableLiveData<List<Specialite>> {
             val call = api.getAllSpecialites()
             var data : List<Specialite>?
-            var finalSpec = listOf<Specialite>()
+            var finalSpec = MutableLiveData<List<Specialite>>()
 
             call.enqueue(object : Callback<List<Specialite>> {
                 override fun onFailure(call: Call<List<Specialite>>, t: Throwable) {
@@ -33,7 +33,7 @@ class SpecialiteRepo {
                     if(response.isSuccessful){
                         data = response.body()
                         if(data != null){
-                            finalSpec = data!!
+                            finalSpec.value = data!!
                         }
                     }else{
                         println("Une erreur s'est déroulée lors de la récupération des données")

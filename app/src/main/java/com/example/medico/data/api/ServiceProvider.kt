@@ -22,5 +22,9 @@ interface ServiceProvider {
     @GET("api/specialites/all")
     fun getAllSpecialites(): Call<List<Specialite>>
 
-
+    //Demande rdv
+    @POST("api/rdv/demande")
+    fun prendreRdv(
+        @Body info: DemandeRdv
+    ): Call<DemandeRdvResponse>
 }

@@ -1,6 +1,5 @@
 package com.example.medico.ui.home
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,16 +9,25 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medico.R
 import com.example.medico.data.model.Medecin
+import com.example.medico.data.model.Specialite
 
-class MedecinAdapter(val context: Context, var data:List<Medecin>): RecyclerView.Adapter<MedecinViewHolder>() {
+/**
+ * data : La liste des médecins
+ * specs : La liste des spécialités (pour relier l'id spec du médecin à la valeur alphanumérique)
+ * type : "all", "specialite" ou "note" : Pour spécifier dans quel recyclerView on va l'afficher
+ * numSpec: Dans le cas où type = "specialite", on affiche les medecins selon la spécialité
+ */
+class MedecinAdapter(val context: Context,
+                     var data:List<Medecin>,
+                     /*var specs: List<Specialite>,
+                     var type: String,
+                     var numSpec:Int = 0*/): RecyclerView.Adapter<MedecinViewHolder>() {
+
+    private var finalList = listOf<Medecin>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedecinViewHolder {
         return MedecinViewHolder(LayoutInflater.from(context).inflate(R.layout.listitem_doctor_layout, parent, false))
     }
@@ -28,8 +36,15 @@ class MedecinAdapter(val context: Context, var data:List<Medecin>): RecyclerView
 
     override fun onBindViewHolder(holder: MedecinViewHolder, position: Int){
         val elt = data[position]
-        Toast.makeText(context, elt.nomMedecin, Toast.LENGTH_LONG)
-        Glide.with(context).load(elt.photoMedecin).into(holder.image)
+
+       /* if(type == "specialite"){
+
+        }else if(type == "note"){
+
+        }else if(type == "all"){
+
+        }*/
+        Glide.with(context).load(elt.photoMedecin).circleCrop().into(holder.image)
         holder.nom.text = holder.nom.text.toString() + " " + elt.nomMedecin + " " + elt.prenomMedecin
         holder.numero.text = elt.telephoneMedecin
         //En attendant de récupérer le nom de la spécialité
