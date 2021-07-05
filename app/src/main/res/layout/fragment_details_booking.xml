@@ -26,7 +26,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerVertical="true"
-       android:src="@drawable/ic_doctor_def"
+        app:srcCompat="@drawable/ic_doctor_def"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backButtonBooking" />
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserratsemibold"
-        android:text="Dr. Jon Doe"
+        android:text="Dr. "
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +173,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:background="@null"
-            android:src="@drawable/ic_next_month"
+            app:srcCompat="@drawable/ic_next_month"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -189,7 +189,8 @@
             android:textColor="@color/fontPrimaryColor"
             android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-            app:layout_constraintEnd_toStartOf="@+id/next_month" />
+            app:layout_constraintEnd_toStartOf="@+id/next_month"
+            android:gravity="center_horizontal" />
 
         <ImageButton
             android:id="@+id/previous_month"
@@ -199,7 +200,7 @@
             android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
             android:background="@null"
-            android:src="@drawable/ic_previous_month"
+            app:srcCompat="@drawable/ic_previous_month"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="parent" />
 

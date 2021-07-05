@@ -1,13 +1,15 @@
 package com.example.medico.ui.home
 
 import android.os.Bundle
-import com.example.medico.R
+
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+
+import com.example.medico.R
 
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 
-import androidx.appcompat.app.AppCompatActivity
 
 
 class HomeActivity : AppCompatActivity() {
@@ -24,5 +26,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp()
+
     }
 }

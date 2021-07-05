@@ -1,19 +1,25 @@
 package com.example.medico.ui.home
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.medico.R
 import com.example.medico.data.model.Medecin
 import com.example.medico.data.model.Specialite
+import java.lang.reflect.Array.get
 
 /**
  * data : La liste des médecins
@@ -23,6 +29,8 @@ import com.example.medico.data.model.Specialite
  */
 class MedecinAdapter(val context: Context,
                      var data:List<Medecin>,
+                     var medVM : MedecinViewModel
+
                      /*var specs: List<Specialite>,
                      var type: String,
                      var numSpec:Int = 0*/): RecyclerView.Adapter<MedecinViewHolder>() {
@@ -68,10 +76,11 @@ class MedecinAdapter(val context: Context,
             }
         }
 
-        /*holder.itemView.setOnClickListener {
-            var bundle = bundleOf("pos" to position)
-            it.findNavController().navigate(R.id.action_medecinsFragment2_to_detailsFragment, bundle)
-        }*/
+        holder.itemView.setOnClickListener {
+            val ctx = context as FragmentActivity
+            medVM.setMed(data[position])
+            it.findNavController().navigate(R.id.action_homepageFragment_to_detailsBookingFragment2)
+        }
     }
 
 }

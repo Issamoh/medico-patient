@@ -52,6 +52,7 @@ class LoginRepo {
                             if(resp.success){
                             with(sharedPref?.edit()) {
                                 this?.putString("userID", resp.id.toString())
+                                this?.putString("nomUser", resp.nomPatient.toString())
                                 this?.putBoolean("connected",true)
                                 this?.apply()
                             }

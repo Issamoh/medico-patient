@@ -27,4 +27,11 @@ interface ServiceProvider {
     fun prendreRdv(
         @Body info: DemandeRdv
     ): Call<DemandeRdvResponse>
+
+    //get mes rendez-vous
+    @POST("api/rdv/patient/{id}")
+    fun mesRdv(
+        @Path("id") id:String
+    ): Call<List<RdvRecord>>
+
 }

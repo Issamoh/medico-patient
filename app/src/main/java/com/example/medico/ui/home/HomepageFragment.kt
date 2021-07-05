@@ -36,7 +36,7 @@ class HomepageFragment : Fragment() {
 
         medVM.listMed.observe(requireActivity(), Observer { med ->
             rv.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rv.adapter = MedecinAdapter(requireActivity(), med)
+            rv.adapter = MedecinAdapter(requireActivity(), med, medVM)
 
         })
 

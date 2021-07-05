@@ -9,8 +9,13 @@ import com.example.medico.data.repositories.MedecinRepo
 
 class MedecinViewModel:ViewModel() {
     var listMed = MutableLiveData<List<Medecin>>()
+    var currentMed = MutableLiveData<Medecin>()
 
     fun getAllMedecins(){
         listMed = MedecinRepo.getAllMedecins()
+    }
+
+    fun setMed(med: Medecin){
+        currentMed.value = med
     }
 }

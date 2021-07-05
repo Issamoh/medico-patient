@@ -25,34 +25,21 @@ class listmed_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_listmed_fragment, container, false)!!
-        // Inflate the layout for this fragment
-        /*val view:View = inflater.inflate(R.layout.fragment_listmed_fragment, container, false)!!
 
-        val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
-        medVM.getAllMedecins()
-
-        val rv:RecyclerView = view.findViewById(R.id.allMeds) as RecyclerView
-
-        medVM.listMed.observe(requireActivity(), Observer { med ->
-            rv.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rv.adapter = MedecinAdapter(requireActivity(), med)
-        })
-
-        return view*/
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
-        medVM.getAllMedecins()
+        //medVM.getAllMedecins()
 
         val rv:RecyclerView = view?.findViewById(R.id.allMeds) as RecyclerView
-
         medVM.listMed.observe(requireActivity(), Observer { med ->
             rv.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-            rv.adapter = MedecinAdapter(requireActivity(), med)
+            rv.adapter = MedecinAdapter(requireActivity(), med, medVM)
         })
+
     }
 }
 
