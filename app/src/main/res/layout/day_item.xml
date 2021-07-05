@@ -8,6 +8,7 @@
     android:layout_marginStart="15dp">
 
     <LinearLayout
+        android:id="@+id/containerDay"
         android:layout_width="75dp"
         android:layout_height="90dp"
         android:background="@drawable/unselected_day_bg"
