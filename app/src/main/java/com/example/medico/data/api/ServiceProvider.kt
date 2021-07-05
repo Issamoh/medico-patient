@@ -13,4 +13,10 @@ interface ServiceProvider {
     fun userLogin(
         @Body info: SignInBody
     ): Call<LoginUser>
+
+    //Demande rdv
+    @POST("api/rdv/demande")
+    fun prendreRdv(
+        @Body info: DemandeRdv
+    ): Call<DemandeRdvResponse>
 }
