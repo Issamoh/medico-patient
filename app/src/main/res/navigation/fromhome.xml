@@ -18,4 +18,8 @@
         android:name="com.example.medico.ui.rendezVous.DetailsRdvFragment"
         android:label="details_rdv_fragment"
         tools:layout="@layout/details_rdv_fragment" />
+    <fragment
+        android:id="@+id/mesRdvFragment"
+        android:name="com.example.medico.ui.rendezVous.MesRdvFragment"
+        android:label="MesRdvFragment" />
 </navigation>

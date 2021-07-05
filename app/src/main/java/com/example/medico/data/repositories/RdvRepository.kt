@@ -69,7 +69,6 @@ class RdvRepository {
                 }
             })
         }
-    }
     fun mesRdv(
         context: Context
     ) {
@@ -77,6 +76,7 @@ class RdvRepository {
             sharedPrefFile, Context.MODE_PRIVATE
         )
         val id = sharedPref.getString("userID", "0")
+        Toast.makeText(context,"am here", Toast.LENGTH_SHORT).show()
 
         val dmdRdvRequest = api.mesRdv(id!!) // consommation de l'api
 
@@ -97,7 +97,8 @@ class RdvRepository {
                     if (resp != null) {
                             Toast.makeText(context,"got data", Toast.LENGTH_SHORT).show()
                             val vm= ViewModelProvider(context as ViewModelStoreOwner).get(ListRdvViewModel::class.java)
-                            vm.list = resp.toMutableList()
+                            val list = resp.toMutableList()
+                            vm.modifyAndNotify(list)
                     }
                 }
             }
@@ -106,5 +107,5 @@ class RdvRepository {
                 Toast.makeText(context, "Erreur", Toast.LENGTH_SHORT).show()
             }
         })
-    }
+    }}
 }
