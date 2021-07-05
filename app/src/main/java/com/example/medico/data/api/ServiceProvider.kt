@@ -14,6 +14,14 @@ interface ServiceProvider {
         @Body info: SignInBody
     ): Call<LoginUser>
 
+    //get medecins
+    @GET("api/medecins/all")
+    fun getAllMedecins(): Call<List<Medecin>>
+
+    //get specialites
+    @GET("api/specialites/all")
+    fun getAllSpecialites(): Call<List<Specialite>>
+
     //Demande rdv
     @POST("api/rdv/demande")
     fun prendreRdv(

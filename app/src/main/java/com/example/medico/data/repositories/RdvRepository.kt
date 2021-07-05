@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.findNavController
@@ -51,7 +52,7 @@ class RdvRepository {
                             if(resp.success){
                                 Toast.makeText(context, resp.msg, Toast.LENGTH_LONG).show()
                                 //TODO make doctor inside viewModel
-                                val navController = (context as Activity).findNavController(R.id.navHotFromHome)
+                                val navController = (context as FragmentActivity).findNavController(R.id.nav_graph)
                                 navController.navigate(R.id.action_detailsBookingFragment_to_detailsRdvFragment)
 
                             }

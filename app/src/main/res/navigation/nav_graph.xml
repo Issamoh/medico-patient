@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homepageFragment">
+
+    <fragment
+        android:id="@+id/homepageFragment"
+        android:name="com.example.medico.ui.home.HomepageFragment"
+        android:label="fragment_homepage"
+        tools:layout="@layout/fragment_homepage" >
+        <action
+            android:id="@+id/action_homepageFragment_to_listmed_fragment"
+            app:destination="@id/listmed_fragment" />
+        <action
+            android:id="@+id/action_homepageFragment_to_detailsBookingFragment2"
+            app:destination="@id/detailsBookingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/listmed_fragment"
+        android:name="com.example.medico.ui.home.listmed_fragment"
+        android:label="fragment_listmed_fragment"
+        tools:layout="@layout/fragment_listmed_fragment" >
+        <action
+            android:id="@+id/action_listmed_fragment_to_detailsBookingFragment2"
+            app:destination="@id/detailsBookingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsRdvFragment2"
+        android:name="com.example.medico.ui.rendezVous.DetailsRdvFragment"
+        android:label="details_rdv_fragment"
+        tools:layout="@layout/details_rdv_fragment" />
+    <fragment
+        android:id="@+id/detailsBookingFragment2"
+        android:name="com.example.medico.ui.booking.DetailsBookingFragment"
+        android:label="DetailsBookingFragment" >
+        <action
+            android:id="@+id/action_detailsBookingFragment2_to_detailsRdvFragment2"
+            app:destination="@id/detailsRdvFragment2" />
+    </fragment>
+</navigation>

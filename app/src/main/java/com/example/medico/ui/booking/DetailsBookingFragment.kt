@@ -17,12 +17,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medico.R
-import com.example.medico.data.model.Day
-import com.example.medico.data.model.DemandeRdv
-import com.example.medico.data.model.Hour
-import com.example.medico.data.model.RdvViewModel
+import com.example.medico.data.model.*
 import com.example.medico.data.repositories.RdvRepository
+import com.example.medico.ui.home.MedecinViewModel
 import com.example.medico.utils.sharedPrefFile
+import kotlinx.android.synthetic.main.fragment_details_booking.*
+import org.w3c.dom.Text
 import java.lang.String
 import java.text.SimpleDateFormat
 import java.time.YearMonth
@@ -41,8 +41,15 @@ class DetailsBookingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+                // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_details_booking, container, false)
+
+        //On vérifie que les données sont bien passées via le viewModel
+        val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
+        medVM.currentMed.observe(requireActivity(), { med ->
+            val nD = view.findViewById(R.id.nomDoctor) as TextView
+            nD.setText(nD.text.toString() + " " + med.nomMedecin + " " + med.prenomMedecin)
+        })
 
         val vm=ViewModelProvider(requireActivity()).get(RdvViewModel::class.java)
 
