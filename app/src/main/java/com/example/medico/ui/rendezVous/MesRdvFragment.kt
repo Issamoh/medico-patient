@@ -1,12 +1,15 @@
 package com.example.medico.ui.rendezVous
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medico.R
@@ -32,6 +35,11 @@ class MesRdvFragment : Fragment() {
         vm.subscriber = this
         view1 = view
         RdvRepository.mesRdv(view.context)
+        val backButtonList =  view.findViewById(R.id.backButtonList) as ImageButton
+        backButtonList.setOnClickListener{
+            val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.action_mesRdvFragment_to_homepageFragment)
+        }
         return view
     }
 

@@ -16,11 +16,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-<<<<<<< HEAD
-        val navController = this.findNavController(R.id.navHotFromHome)
+      /*  val navController = this.findNavController(R.id.navHotFromHome)
        // navController.navigate(R.id.detailsBookingFragment)
-        navController.navigate(R.id.mesRdvFragment)
-=======
+        navController.navigate(R.id.mesRdvFragment)*/
 
         val navView: NavigationView = NavigationView(this)
 
@@ -31,7 +29,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp()
->>>>>>> e5d65fa850fc3d81485d7882012958dbb5442264
 
     }
 }

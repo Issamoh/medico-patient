@@ -79,7 +79,7 @@ class MedecinAdapter(val context: Context,
         holder.itemView.setOnClickListener {
             val ctx = context as FragmentActivity
             medVM.setMed(data[position])
-            it.findNavController().navigate(R.id.action_homepageFragment_to_detailsBookingFragment2)
+            it.findNavController().navigate(R.id.action_listmed_fragment_to_detailsBookingFragment2)
         }
     }
 

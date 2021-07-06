@@ -4,11 +4,14 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.medico.R
 import com.example.medico.data.api.ServiceBuilder
 import com.example.medico.data.api.ServiceProvider
@@ -51,9 +54,10 @@ class RdvRepository {
                         if (resp != null) {
                             if(resp.success){
                                 Toast.makeText(context, resp.msg, Toast.LENGTH_LONG).show()
-                                //TODO make doctor inside viewModel
-                                val navController = (context as FragmentActivity).findNavController(R.id.nav_graph)
-                                navController.navigate(R.id.action_detailsBookingFragment_to_detailsRdvFragment)
+                               /* val navController = (context as Activity).findViewById<View>(R.id.homepageFragment).findNavController()
+                                navController.navigate(R.id.action_detailsBookingFragment_to_detailsRdvFragment)*/
+                                val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
+                                navController.navigate(R.id.action_detailsBookingFragment2_to_detailsRdvFragment2)
 
                             }
                             else{
@@ -77,7 +81,6 @@ class RdvRepository {
             sharedPrefFile, Context.MODE_PRIVATE
         )
         val id = sharedPref.getString("userID", "0")
-        Toast.makeText(context,"am here", Toast.LENGTH_SHORT).show()
 
         val dmdRdvRequest = api.mesRdv(id!!) // consommation de l'api
 
@@ -96,7 +99,6 @@ class RdvRepository {
                 } else {
                     val resp = response.body()
                     if (resp != null) {
-                            Toast.makeText(context,"got data", Toast.LENGTH_SHORT).show()
                             val vm= ViewModelProvider(context as ViewModelStoreOwner).get(ListRdvViewModel::class.java)
                             val list = resp.toMutableList()
                             vm.modifyAndNotify(list)

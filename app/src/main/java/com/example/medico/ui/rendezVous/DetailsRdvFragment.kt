@@ -8,9 +8,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.medico.R
+import com.example.medico.data.model.DetailsRdvViewModel
 import com.example.medico.utils.sharedPrefFile
 
 import com.google.zxing.BarcodeFormat;
@@ -18,6 +25,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import kotlinx.android.synthetic.main.fragment_details_rdv.*
 
 
 class DetailsRdvFragment : Fragment() {
@@ -36,9 +44,19 @@ class DetailsRdvFragment : Fragment() {
         val sharedPref = (context as Activity).getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
-        val nomPatient = sharedPref.getString("nomUser", "0")
-        val content = nomPatient
-        //TODO jib les données mn vm.doctor
+        val nomPatientV = sharedPref.getString("nomUser", "0")
+        val vmDetails= ViewModelProvider(requireActivity()).get(DetailsRdvViewModel::class.java)
+        val nomDoctorX = (view.findViewById(R.id.nomDoctorX) as TextView)
+        val specDoctorX = (view.findViewById(R.id.specDoctorX) as TextView)
+        val prixDoctorX = (view.findViewById(R.id.prixDoctorX) as TextView)
+        val nomPatientX = (view.findViewById(R.id.nomPatientX) as TextView)
+        val dateHeureX = (view.findViewById(R.id.dateHeureX) as TextView)
+        nomDoctorX.text = vmDetails.nomMedecin
+        specDoctorX.text = vmDetails.specMedecin
+        prixDoctorX.text = vmDetails.prix
+        nomPatientX.text = nomPatientV
+        dateHeureX.text = vmDetails.date+" à "+vmDetails.heure
+        val content = nomPatientV+"$"+vmDetails.nomMedecin+"$"+vmDetails.date+"$"+vmDetails.heure+"$"+vmDetails.specMedecin+"$"+vmDetails.prix
         val writer = QRCodeWriter()
         try {
             val bitMatrix: BitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512)
@@ -50,9 +68,15 @@ class DetailsRdvFragment : Fragment() {
                     bmp.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
                 }
             }
-            (view.findViewById(R.id.qrImage) as ImageView).setImageBitmap(bmp)
+            (view.findViewById(R.id.qrImageX) as ImageView).setImageBitmap(bmp)
         } catch (e: WriterException) {
             e.printStackTrace()
+        }
+
+       val backButtonBooking =  view.findViewById(R.id.backButtonBooking) as ImageButton
+        backButtonBooking.setOnClickListener{
+            val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.action_detailsRdvFragment2_to_homepageFragment)
         }
         return  view
     }
