@@ -76,7 +76,7 @@ class DetailsRdvFragment : Fragment() {
        val backButtonBooking =  view.findViewById(R.id.backButtonBooking) as ImageButton
         backButtonBooking.setOnClickListener{
             val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.action_detailsRdvFragment2_to_homepageFragment)
+            navController.navigate(R.id.action_detailsRdvFragment2_to_mesRdvFragment)
         }
         return  view
     }

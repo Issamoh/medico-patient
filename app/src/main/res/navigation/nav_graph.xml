@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_detailsRdvFragment2_to_homepageFragment"
             app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_detailsRdvFragment2_to_mesRdvFragment"
+            app:destination="@id/mesRdvFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsBookingFragment2"
@@ -70,5 +73,8 @@
         <action
             android:id="@+id/action_mesRdvFragment_to_homepageFragment"
             app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_mesRdvFragment_to_detailsRdvFragment2"
+            app:destination="@id/detailsRdvFragment2" />
     </fragment>
 </navigation>

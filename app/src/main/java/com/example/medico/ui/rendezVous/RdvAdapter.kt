@@ -1,5 +1,6 @@
 package com.example.medico.ui.rendezVous
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -11,8 +12,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medico.R
+import com.example.medico.data.model.DetailsRdvViewModel
 import com.example.medico.data.model.RdvRecord
 import com.example.medico.data.model.RdvViewModel
 
@@ -29,6 +32,14 @@ class RdvAdapter (val context: Context, var data: List<RdvRecord>): RecyclerView
         holder.date.text = data[position].date
         holder.heure.text = data[position].heure
         holder.itemView.setOnClickListener {
+            val vmDetails=ViewModelProvider(context as ViewModelStoreOwner).get(DetailsRdvViewModel::class.java)
+            vmDetails.date = data[position].date
+            vmDetails.heure = data[position].heure
+            vmDetails.nomMedecin = "Pr. "+data[position].nomMedecin
+            vmDetails.prix = "2000 DA"
+            vmDetails.specMedecin = data[position].specMedecin
+            val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.action_mesRdvFragment_to_detailsRdvFragment2)
         }
 
     }

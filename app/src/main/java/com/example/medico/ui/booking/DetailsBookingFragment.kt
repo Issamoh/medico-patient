@@ -185,7 +185,6 @@ class DetailsBookingFragment : Fragment() {
                     sharedPrefFile, Context.MODE_PRIVATE
                 )
                 val id = sharedPref.getString("userID", "0")
-                //TODO pass also doctor as param to show his infos in rdv details
                 val vmDetails=ViewModelProvider(requireActivity()).get(DetailsRdvViewModel::class.java)
                 medVM.currentMed.observe(requireActivity(), { med ->
                     vmDetails.date = date
