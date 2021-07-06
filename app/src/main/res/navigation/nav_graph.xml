@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homepageFragment_to_mesRdvFragment"
             app:destination="@id/mesRdvFragment" />
+        <action
+            android:id="@+id/action_homepageFragment_to_traitementsFragment"
+            app:destination="@id/traitementsFragment" />
     </fragment>
     <fragment
         android:id="@+id/listmed_fragment"
@@ -76,5 +79,26 @@
         <action
             android:id="@+id/action_mesRdvFragment_to_detailsRdvFragment2"
             app:destination="@id/detailsRdvFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/traitementsFragment"
+        android:name="com.example.medico.ui.traitement.TraitementsFragment"
+        android:label="fragment_traitements"
+        tools:layout="@layout/fragment_traitements" >
+        <action
+            android:id="@+id/action_traitementsFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_traitementsFragment_to_detailsTraitementFragment"
+            app:destination="@id/detailsTraitementFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsTraitementFragment"
+        android:name="com.example.medico.ui.traitement.DetailsTraitementFragment"
+        android:label="fragment_details_traitement"
+        tools:layout="@layout/fragment_details_traitement" >
+        <action
+            android:id="@+id/action_detailsTraitementFragment_to_traitementsFragment"
+            app:destination="@id/traitementsFragment" />
     </fragment>
 </navigation>

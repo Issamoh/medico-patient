@@ -43,5 +43,33 @@ class MedecinRepo {
             })
             return finalMed
         }
+
+        fun getMedecinById(id:Int): MutableLiveData<Medecin>{
+            val call = api.getMedecinById(id)
+            var data: Medecin?
+            var finalMed = MutableLiveData<Medecin>()
+
+            call.enqueue(object: Callback<Medecin> {
+                override fun onFailure(call: Call<Medecin>, t: Throwable) {
+                    Log.d("Reponse", "Erreur : ", t)
+                }
+
+                override fun onResponse(
+                    call: Call<Medecin>,
+                    response: Response<Medecin>
+                ){
+                    if(response.isSuccessful){
+                        data = response.body()
+                        if(data != null){
+                            finalMed.value = data!!
+                        }
+                    }
+                    else{
+                        println("Une erreur s'est déroulée lors de la récupération des données")
+                    }
+                }
+            })
+            return finalMed
+        }
     }
 }

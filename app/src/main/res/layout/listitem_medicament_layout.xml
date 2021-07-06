@@ -7,9 +7,9 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_trait"
+        android:id="@+id/card_view_medic"
         android:layout_width="321dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginBottom="25dp"
@@ -23,55 +23,38 @@
             android:layout_height="match_parent"
             android:paddingLeft="20dp">
 
-
             <TextView
-                android:id="@+id/numTrait"
+                android:id="@+id/nomMedic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserratbold"
-                android:text="Traitement numéro : "
+                android:fontFamily="@font/montserratregular"
+                android:text="Nom médicament : "
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/startDate"
+                android:id="@+id/typeMedic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserratregular"
-                android:text="Date de début : "
+                android:text="Type : "
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/numTrait" />
+                card_view:layout_constraintTop_toBottomOf="@+id/nomMedic" />
 
             <TextView
-                android:id="@+id/dureeTrait"
+                android:id="@+id/modMedic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserratregular"
-                android:text="Durée :"
+                android:text="Mode d'administration : "
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/startDate" />
+                card_view:layout_constraintTop_toBottomOf="@+id/typeMedic" />
 
-            <TextView
-                android:id="@+id/rmqTrait"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserratregular"
-                android:text="Remarques :"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/dureeTrait" />
-
-            <ImageView
-                android:id="@+id/seeMoreTrait"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_see_details" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

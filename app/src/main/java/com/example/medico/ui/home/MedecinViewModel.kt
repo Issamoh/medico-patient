@@ -10,6 +10,7 @@ import com.example.medico.data.repositories.MedecinRepo
 class MedecinViewModel:ViewModel() {
     var listMed = MutableLiveData<List<Medecin>>()
     var currentMed = MutableLiveData<Medecin>()
+    var medById = MutableLiveData<Medecin>()
 
     fun getAllMedecins(){
         listMed = MedecinRepo.getAllMedecins()
@@ -17,5 +18,9 @@ class MedecinViewModel:ViewModel() {
 
     fun setMed(med: Medecin){
         currentMed.value = med
+    }
+
+    fun setMedById(id: Int){
+        medById = MedecinRepo.getMedecinById(id)
     }
 }

@@ -1,4 +1,11 @@
 package com.example.medico.data.model
 
-class Traitement {
-}
+
+data class Traitement (
+    var idTraitement: Int,
+    var dateDebutTraitement: String,
+    var dureeTraitement: String,
+    var remarquesTraitement: String,
+    var idMedecin: Int,
+    var idPatient: Int
+)

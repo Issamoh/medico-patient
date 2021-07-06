@@ -51,11 +51,7 @@ class HomepageFragment : Fragment() {
             drawLay?.closeDrawer(GravityCompat.START)
             when (id) {
                 R.id.nav_rdv -> findNavController().navigate(R.id.action_homepageFragment_to_mesRdvFragment)
-                R.id.nav_trait -> Toast.makeText(
-                    context,
-                    "Traitement is Clicked",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.nav_trait -> findNavController().navigate(R.id.action_homepageFragment_to_traitementsFragment)
                 R.id.nav_msg -> Toast.makeText(
                     context,
                     "Conseil is Clicked",

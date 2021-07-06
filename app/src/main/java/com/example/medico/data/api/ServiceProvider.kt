@@ -45,5 +45,27 @@ interface ServiceProvider {
     @POST("api/conseil/demande")
     fun addConseil(@Body conseil: Conseil):Call<ResponseBack>
 
+    //traitements d'un patient
+    @GET("api/traitements/patient/{id}")
+    fun getTraitementsPatient(
+        @Path("id") id:String
+    ):Call<List<Traitement>>
 
+    //medecin by id
+    @GET("api/medecins/{id}")
+    fun getMedecinById(
+        @Path("id") id:Int
+    ):Call<Medecin>
+
+    //medicament by id
+    @GET("api/medicaments/{id}")
+    fun getMedicamentsById(
+        @Path("id") id:Int
+    ):Call<Medicament>
+
+    //medicaments d'un traitement
+    @GET("api/medicaments/traitement/{id}")
+    fun getMedicamentsByTraitement(
+        @Path("id") id: Int
+    ):Call<List<TraitMed>>
 }

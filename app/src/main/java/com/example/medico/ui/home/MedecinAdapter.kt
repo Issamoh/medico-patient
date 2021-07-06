@@ -91,7 +91,19 @@ class MedecinAdapter(val context: Context,
                 it.findNavController()
                     .navigate(R.id.action_homepageFragment_to_detailsBookingFragment2)
             }
+        }
 
+        holder.arrow.setOnClickListener {
+            val ctx = context as FragmentActivity
+            medVM.setMed(data[position])
+
+            if(type == "all"){
+                it.findNavController()
+                    .navigate(R.id.action_listmed_fragment_to_detailsBookingFragment2)
+            }else {
+                it.findNavController()
+                    .navigate(R.id.action_homepageFragment_to_detailsBookingFragment2)
+            }
         }
     }
 
@@ -103,4 +115,5 @@ class MedecinViewHolder(view: View) : RecyclerView.ViewHolder(view){
     val numero = view.findViewById<TextView>(R.id.docNum) as TextView
     val spec = view.findViewById<TextView>(R.id.docSpec) as TextView
     val pos = view.findViewById<ImageView>(R.id.docPos) as ImageView
+    val arrow = view.findViewById<ImageView>(R.id.docDetails) as ImageView
 }
