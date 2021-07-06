@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.login.LoginActivity"></activity>
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.home.HomeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
