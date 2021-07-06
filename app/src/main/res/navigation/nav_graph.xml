@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_listmed_fragment_to_detailsBookingFragment2"
             app:destination="@id/detailsBookingFragment2" />
+        <action
+            android:id="@+id/action_listmed_fragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsRdvFragment2"

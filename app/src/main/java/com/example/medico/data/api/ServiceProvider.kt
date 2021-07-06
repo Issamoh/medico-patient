@@ -34,4 +34,10 @@ interface ServiceProvider {
         @Path("id") id:String
     ): Call<List<RdvRecord>>
 
+    //get a patient
+    @GET("api/patients/{id}")
+    fun getPatient(
+        @Path("id") id:String
+    ):Call<Patient>
+
 }
