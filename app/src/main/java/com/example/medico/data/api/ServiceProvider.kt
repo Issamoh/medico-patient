@@ -1,7 +1,6 @@
 package com.example.medico.data.api
 
 import com.example.medico.data.model.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -29,7 +28,7 @@ interface ServiceProvider {
     ): Call<DemandeRdvResponse>
 
     //get mes rendez-vous
-    @POST("api/rdv/patient/{id}")
+    @GET("api/rdv/patient/{id}")
     fun mesRdv(
         @Path("id") id:String
     ): Call<List<RdvRecord>>
@@ -39,5 +38,12 @@ interface ServiceProvider {
     fun getPatient(
         @Path("id") id:String
     ):Call<Patient>
+
+    @POST("api/conseil/multipledemande")
+    fun addTeams(@Body conseils: List<Conseil>):Call<ResponseBack>
+
+    @POST("api/conseil/demande")
+    fun addConseil(@Body conseil: Conseil):Call<ResponseBack>
+
 
 }

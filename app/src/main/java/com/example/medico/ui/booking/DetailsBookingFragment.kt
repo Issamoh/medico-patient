@@ -12,15 +12,20 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.medico.R
 import com.example.medico.data.model.*
 import com.example.medico.data.repositories.RdvRepository
 import com.example.medico.ui.home.MedecinViewModel
 import com.example.medico.utils.sharedPrefFile
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_details_booking.*
 import org.w3c.dom.Text
 import java.lang.String
@@ -48,8 +53,19 @@ class DetailsBookingFragment : Fragment() {
         val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
         medVM.currentMed.observe(requireActivity(), { med ->
             val nD = view.findViewById(R.id.nomDoctor) as TextView
-            nD.setText(nD.text.toString() + " " + med.nomMedecin + " " + med.prenomMedecin)
+            nD.setText("Pr. " + med.nomMedecin + " " + med.prenomMedecin)
+            val specDoctor = view.findViewById(R.id.specDoctor) as TextView
+            specDoctor.text = med.idSpecialite.toString()
+            val noteDoctor = view.findViewById(R.id.noteDoctor) as TextView
+            noteDoctor.text = med.noteMedecin.toString()
+            val photoMedecin = view.findViewById(R.id.docImgDetails) as CircleImageView
+            Glide.with(requireContext()).load(med.photoMedecin).circleCrop().into(photoMedecin)
         })
+        val backButtonBooking = view.findViewById(R.id.backButtonBooking) as ImageButton
+        backButtonBooking.setOnClickListener{
+            val navController = this.findNavController()
+            navController.navigate(R.id.action_detailsBookingFragment2_to_homepageFragment)
+        }
 
         val vm=ViewModelProvider(requireActivity()).get(RdvViewModel::class.java)
 
@@ -170,6 +186,14 @@ class DetailsBookingFragment : Fragment() {
                 )
                 val id = sharedPref.getString("userID", "0")
                 //TODO pass also doctor as param to show his infos in rdv details
+                val vmDetails=ViewModelProvider(requireActivity()).get(DetailsRdvViewModel::class.java)
+                medVM.currentMed.observe(requireActivity(), { med ->
+                    vmDetails.date = date
+                    vmDetails.heure = vm.heure
+                    vmDetails.nomMedecin = "Pr. "+med.nomMedecin+" "+med.prenomMedecin
+                    vmDetails.prix = "2000 DA"
+                    vmDetails.specMedecin = med.idSpecialite.toString()
+                })
                 RdvRepository.prendreRdv(
                     context as Activity, DemandeRdv(
                         id!!.toInt(),
@@ -182,22 +206,41 @@ class DetailsBookingFragment : Fragment() {
         }
         val callDoctor = view.findViewById<ImageView>(R.id.callDoctor)
         callDoctor.setOnClickListener {
-            //TODO change with vm.doctor.tel ...
-            val uri = Uri.parse("tel:0676718893")
-            val intent = Intent(Intent.ACTION_DIAL, uri)
-            if (intent.resolveActivity((context as Activity).packageManager) != null) {
-                (context as Activity).startActivity(intent)
-            }
+            val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
+            medVM.currentMed.observe(requireActivity(), { med ->
+                val uri = Uri.parse("tel:"+med.telephoneMedecin)
+                val intent = Intent(Intent.ACTION_DIAL, uri)
+                if (intent.resolveActivity((context as Activity).packageManager) != null) {
+                    (context as Activity).startActivity(intent)
+                }
+            })
         }
 
         val positionDoctor = view.findViewById<ImageView>(R.id.positionDoctor)
         positionDoctor.setOnClickListener {
-            //TODO change with vm.doctor.longitude ...
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr=28.605989,77.372970")
-            )
-            (context as Activity).startActivity(intent)
+            val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
+            medVM.currentMed.observe(requireActivity(), { med ->
+                val longitude = med.cabinetMedecinLongitude
+                val latitude = med.cabinetMedecinLatitude
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?daddr=$latitude,$longitude")
+                )
+                (context as Activity).startActivity(intent)
+            })
+        }
+        val askDoctor = view.findViewById(R.id.askDoctor) as ImageView
+        askDoctor.setOnClickListener{
+            val vmC=ViewModelProvider(requireActivity()).get(DemandeConseilViewModel::class.java)
+            val medVM = ViewModelProvider(requireActivity()).get(MedecinViewModel::class.java)
+            medVM.currentMed.observe(requireActivity(), { med ->
+                vmC.idMedecin = med.idMedecin.toString()
+                vmC.lienphoto = med.photoMedecin
+                vmC.nomMedecin = "Pr. "+med.nomMedecin+" "+med.prenomMedecin
+                vmC.specMedecin = med.idSpecialite.toString()
+            })
+            val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.action_detailsBookingFragment2_to_demandeConseilFragment)
         }
 
 

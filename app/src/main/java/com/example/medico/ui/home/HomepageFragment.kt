@@ -50,11 +50,7 @@ class HomepageFragment : Fragment() {
             val id: Int = it.itemId
             drawLay?.closeDrawer(GravityCompat.START)
             when (id) {
-                R.id.nav_rdv -> Toast.makeText(
-                    context,
-                    "RdV is Clicked",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.nav_rdv -> findNavController().navigate(R.id.action_homepageFragment_to_mesRdvFragment)
                 R.id.nav_trait -> Toast.makeText(
                     context,
                     "Traitement is Clicked",
@@ -82,18 +78,15 @@ class HomepageFragment : Fragment() {
 
 
         medVM.getAllMedecins()
+        specVM.getAllSpecialites()
 
         val rv:RecyclerView = view?.findViewById(R.id.recyclerViewMed) as RecyclerView
 
         medVM.listMed.observe(requireActivity(), Observer { med ->
             rv.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
             rv.adapter = MedecinAdapter(requireActivity(), med, medVM, "note", specVM)
-
         })
-
-
-        specVM.getAllSpecialites()
-
+        
         val rvS:RecyclerView = view?.findViewById(R.id.recyclerViewSpec) as RecyclerView
 
         specVM.listSpec.observe(requireActivity(), Observer { spec ->

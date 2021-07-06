@@ -20,6 +20,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+      /*  val navController = this.findNavController(R.id.navHotFromHome)
+       // navController.navigate(R.id.detailsBookingFragment)
+        navController.navigate(R.id.mesRdvFragment)*/
 
         val navView: NavigationView = NavigationView(this)
 

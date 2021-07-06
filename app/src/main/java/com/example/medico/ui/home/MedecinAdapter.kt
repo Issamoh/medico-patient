@@ -37,7 +37,6 @@ class MedecinAdapter(val context: Context,
     private var listSpec = listOf<Specialite>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedecinViewHolder {
         //On récupère la liste des spécialités pour le mapping
-        specVM.getAllSpecialites()
         specVM.listSpec.observe((context as FragmentActivity), { spec ->
             listSpec = spec
         })
@@ -55,9 +54,10 @@ class MedecinAdapter(val context: Context,
         holder.nom.text = holder.nom.text.toString() + " " + elt.nomMedecin + " " + elt.prenomMedecin
         holder.numero.text = elt.telephoneMedecin
 
-        for(e in listSpec){
-            if(e.idSpecialite == elt.idSpecialite) {
-                holder.spec.text = e.nomSpecialite
+        for(it in listSpec){
+            println(it.nomSpecialite)
+            if(it.idSpecialite == elt.idSpecialite) {
+                holder.spec.text = it.nomSpecialite
                 break
             }
         }
@@ -83,6 +83,7 @@ class MedecinAdapter(val context: Context,
         holder.itemView.setOnClickListener {
             val ctx = context as FragmentActivity
             medVM.setMed(data[position])
+
             if(type == "all"){
                 it.findNavController()
                     .navigate(R.id.action_listmed_fragment_to_detailsBookingFragment2)
@@ -90,6 +91,7 @@ class MedecinAdapter(val context: Context,
                 it.findNavController()
                     .navigate(R.id.action_homepageFragment_to_detailsBookingFragment2)
             }
+
         }
     }
 

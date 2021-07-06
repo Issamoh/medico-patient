@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homepageFragment_to_detailsBookingFragment2"
             app:destination="@id/detailsBookingFragment2" />
+        <action
+            android:id="@+id/action_homepageFragment_to_mesRdvFragment"
+            app:destination="@id/mesRdvFragment" />
     </fragment>
     <fragment
         android:id="@+id/listmed_fragment"
@@ -33,7 +36,11 @@
         android:id="@+id/detailsRdvFragment2"
         android:name="com.example.medico.ui.rendezVous.DetailsRdvFragment"
         android:label="details_rdv_fragment"
-        tools:layout="@layout/details_rdv_fragment" />
+        tools:layout="@layout/details_rdv_fragment" >
+        <action
+            android:id="@+id/action_detailsRdvFragment2_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsBookingFragment2"
         android:name="com.example.medico.ui.booking.DetailsBookingFragment"
@@ -41,5 +48,27 @@
         <action
             android:id="@+id/action_detailsBookingFragment2_to_detailsRdvFragment2"
             app:destination="@id/detailsRdvFragment2" />
+        <action
+            android:id="@+id/action_detailsBookingFragment2_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
+        <action
+            android:id="@+id/action_detailsBookingFragment2_to_demandeConseilFragment"
+            app:destination="@id/demandeConseilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/demandeConseilFragment"
+        android:name="com.example.medico.ui.conseil.DemandeConseilFragment"
+        android:label="DemandeConseilFragment" >
+        <action
+            android:id="@+id/action_demandeConseilFragment_to_detailsBookingFragment2"
+            app:destination="@id/detailsBookingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/mesRdvFragment"
+        android:name="com.example.medico.ui.rendezVous.MesRdvFragment"
+        android:label="MesRdvFragment" >
+        <action
+            android:id="@+id/action_mesRdvFragment_to_homepageFragment"
+            app:destination="@id/homepageFragment" />
     </fragment>
 </navigation>

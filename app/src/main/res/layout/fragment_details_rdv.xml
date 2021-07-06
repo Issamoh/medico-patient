@@ -12,8 +12,8 @@
 
             <ImageButton
                 android:id="@+id/backButtonBooking"
-                android:layout_width="12dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@null"
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/nomDoctor"
+                android:id="@+id/nomDoctorX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
-                android:id="@+id/specDoctor"
+                android:id="@+id/specDoctorX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -58,12 +58,12 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nomDoctor" />
+                app:layout_constraintTop_toBottomOf="@+id/nomDoctorX" />
 
 
 
             <TextView
-                android:id="@+id/prixDoctor"
+                android:id="@+id/prixDoctorX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
@@ -72,10 +72,10 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/specDoctor"
+                app:layout_constraintTop_toBottomOf="@+id/specDoctorX"
                 />
             <TextView
-                android:id="@+id/nomPatient"
+                android:id="@+id/nomPatientX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -85,9 +85,9 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/prixDoctor" />
+                app:layout_constraintTop_toBottomOf="@+id/prixDoctorX" />
             <TextView
-                android:id="@+id/dateHeure"
+                android:id="@+id/dateHeureX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -97,7 +97,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nomPatient" />
+                app:layout_constraintTop_toBottomOf="@+id/nomPatientX" />
 
 
 
@@ -110,7 +110,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dateHeure">
+                app:layout_constraintTop_toBottomOf="@+id/dateHeureX">
 
 
                 <TextView
@@ -127,7 +127,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/qrImage"
+                    android:id="@+id/qrImageX"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     app:layout_constraintBottom_toBottomOf="parent"
