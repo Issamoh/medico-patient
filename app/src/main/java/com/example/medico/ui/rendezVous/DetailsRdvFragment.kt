@@ -56,7 +56,7 @@ class DetailsRdvFragment : Fragment() {
         prixDoctorX.text = vmDetails.prix
         nomPatientX.text = nomPatientV
         dateHeureX.text = vmDetails.date+" à "+vmDetails.heure
-        val content = nomPatientV+"$"+vmDetails.nomMedecin+"$"+vmDetails.date+"$"+vmDetails.heure+"$"+vmDetails.specMedecin+"$"+vmDetails.prix
+        val content = "{'nomPatient' : '"+nomPatientV+"','nomMedecin' : '" +vmDetails.nomMedecin+"', 'date' : '"+vmDetails.date+"', 'heure' : '"+vmDetails.heure+"', 'spec' : '"+vmDetails.specMedecin+"', 'prix' : '"+vmDetails.prix+"'}"
         val writer = QRCodeWriter()
         try {
             val bitMatrix: BitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512)
@@ -76,7 +76,7 @@ class DetailsRdvFragment : Fragment() {
        val backButtonBooking =  view.findViewById(R.id.backButtonBooking) as ImageButton
         backButtonBooking.setOnClickListener{
             val navController = (context as Activity).findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.action_detailsRdvFragment2_to_homepageFragment)
+            navController.navigate(R.id.action_detailsRdvFragment2_to_mesRdvFragment)
         }
         return  view
     }
