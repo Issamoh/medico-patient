@@ -29,14 +29,19 @@ import java.lang.reflect.Array.get
  */
 class MedecinAdapter(val context: Context,
                      var data:List<Medecin>,
-                     var medVM : MedecinViewModel
-
-                     /*var specs: List<Specialite>,
+                     var medVM : MedecinViewModel,
                      var type: String,
-                     var numSpec:Int = 0*/): RecyclerView.Adapter<MedecinViewHolder>() {
+                     var specVM: SpecialiteViewModel): RecyclerView.Adapter<MedecinViewHolder>() {
 
-    private var finalList = listOf<Medecin>()
+    //private var finalList = listOf<Medecin>()
+    private var listSpec = listOf<Specialite>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MedecinViewHolder {
+        //On récupère la liste des spécialités pour le mapping
+        specVM.listSpec.observe((context as FragmentActivity), { spec ->
+            listSpec = spec
+        })
+        //On ordonne les médecins par note
+        data = data.sortedByDescending { it.noteMedecin }
         return MedecinViewHolder(LayoutInflater.from(context).inflate(R.layout.listitem_doctor_layout, parent, false))
     }
 
@@ -45,18 +50,17 @@ class MedecinAdapter(val context: Context,
     override fun onBindViewHolder(holder: MedecinViewHolder, position: Int){
         val elt = data[position]
 
-       /* if(type == "specialite"){
-
-        }else if(type == "note"){
-
-        }else if(type == "all"){
-
-        }*/
         Glide.with(context).load(elt.photoMedecin).circleCrop().into(holder.image)
         holder.nom.text = holder.nom.text.toString() + " " + elt.nomMedecin + " " + elt.prenomMedecin
         holder.numero.text = elt.telephoneMedecin
-        //En attendant de récupérer le nom de la spécialité
-        holder.spec.text = elt.idSpecialite.toString()
+
+        for(it in listSpec){
+            println(it.nomSpecialite)
+            if(it.idSpecialite == elt.idSpecialite) {
+                holder.spec.text = it.nomSpecialite
+                break
+            }
+        }
 
         holder.numero.setOnClickListener {
             val uri = Uri.parse("tel:${data[position].telephoneMedecin}")
@@ -79,7 +83,15 @@ class MedecinAdapter(val context: Context,
         holder.itemView.setOnClickListener {
             val ctx = context as FragmentActivity
             medVM.setMed(data[position])
-            it.findNavController().navigate(R.id.action_listmed_fragment_to_detailsBookingFragment2)
+
+            if(type == "all"){
+                it.findNavController()
+                    .navigate(R.id.action_listmed_fragment_to_detailsBookingFragment2)
+            }else {
+                it.findNavController()
+                    .navigate(R.id.action_homepageFragment_to_detailsBookingFragment2)
+            }
+
         }
     }
 

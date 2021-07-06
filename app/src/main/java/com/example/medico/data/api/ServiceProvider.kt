@@ -33,10 +33,17 @@ interface ServiceProvider {
         @Path("id") id:String
     ): Call<List<RdvRecord>>
 
+    //get a patient
+    @GET("api/patients/{id}")
+    fun getPatient(
+        @Path("id") id:String
+    ):Call<Patient>
+
     @POST("api/conseil/multipledemande")
     fun addTeams(@Body conseils: List<Conseil>):Call<ResponseBack>
 
     @POST("api/conseil/demande")
     fun addConseil(@Body conseil: Conseil):Call<ResponseBack>
+
 
 }

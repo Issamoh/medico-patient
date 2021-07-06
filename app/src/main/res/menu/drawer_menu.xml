@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:shownIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_rdv"
+        android:icon="@drawable/ic_rdv"
+        android:title="Mes rendez-vous"
+        />
+    <item
+        android:id="@+id/nav_msg"
+        android:icon="@drawable/ic_msg"
+        android:title="Mes messages"
+        />
+    <item
+        android:id="@+id/nav_trait"
+        android:icon="@drawable/ic_trait"
+        android:title="Mes traitements"
+        />
+    <item
+        android:id="@+id/nav_params"
+        android:icon="@drawable/ic_params"
+        android:title="Paramètres"
+        />
+
+</menu>
